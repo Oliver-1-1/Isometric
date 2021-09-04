@@ -1,18 +1,18 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 #include "settings.h"
-class Window
+class window
 {
 public:
-	sf::RenderWindow window;
+	sf::RenderWindow display;
 	sf::RenderStates states;
-	sf::View viewPort;
+	sf::View view_port;
 	
-	Window();
-	~Window();
-	void updateResolution(int x, int y);
+	window();
+	~window() = default;
+	void update_resolution(int x, int y);
 private:
 
 };
 
-extern Window window;
+extern window display;

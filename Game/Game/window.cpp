@@ -1,32 +1,33 @@
 #include "window.h"
 
-Window::Window()
+#include <iostream>
+
+window::window()
 {
-	this->window.create(sf::VideoMode(settings.resolutionX, settings.resolutionY), "window");
+	this->display.create(sf::VideoMode(settings.resolution_x, settings.resolution_y), "display");
 	
-	this->viewPort.setSize((float)settings.resolutionX, (float)settings.resolutionY);
-	this->viewPort.setCenter((float)settings.resolutionX / 2.f, (float)settings.resolutionY / 2.f);
+	this->view_port.setSize(static_cast<float>(settings.resolution_x), static_cast<float>(settings.resolution_y));
+	this->view_port.setCenter(static_cast<float>(settings.resolution_x) / 2.f, static_cast<float>(settings.resolution_y) / 2.f);
 	
-	this->window.setView(this->viewPort);
+	this->display.setView(this->view_port);
 }
 
-Window::~Window()
-{
-	
-}
+
 
 //This can brake some functions that dosnt run in loop
-void Window::updateResolution(int x, int y)
+void window::update_resolution(int x, int y)
 {
-	window.setSize(sf::Vector2u(x, y));
+	display.setSize(sf::Vector2u(x, y));
 
-	settings.resolutionX = x;
-	settings.resolutionY = y;
-
-	this->viewPort.setSize((float)settings.resolutionX, (float)settings.resolutionY);
-	this->viewPort.setCenter((float)settings.resolutionX / 2.f, (float)settings.resolutionY / 2.f);
-	this->viewPort.move(0, 0);
-	this->window.setView(this->viewPort);
+	settings.resolution_x = x;
+	settings.resolution_y = y;
+	
+	this->view_port.setSize(static_cast<float>(settings.resolution_x), static_cast<float>(settings.resolution_y));
+	this->view_port.setCenter(static_cast<float>(settings.resolution_x) / 2.f, static_cast<float>(settings.resolution_y) / 2.f);
+	this->view_port.move(0, 0);
+	this->display.setView(this->view_port);
 }
+
+
 
 

@@ -1,53 +1,63 @@
+
 #include "player.h"
-
-Player::Player()
+player::player()
 {
+
 }
 
-void Player::update()
+void player::update()
 {
-	getInput();
-	moveCam();
+	get_input();
+	move_cam();
+	display.display.draw(sel.data(), sel.size(), sf::Quads, display.states);
+
 }
 
-void Player::moveCam()
+sf::Vector2i player::get_selector_position(std::vector<sf::Vertex> vertices)
+{
+	sel = vertices;
+
+	return sf::Vector2i(0, 0);
+}
+
+void player::move_cam()
 {
 	//TODO MOUSE INPUT
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
 	{
-		window.viewPort.move(-1, 0);
-		window.window.setView(window.viewPort);
+		display.view_port.move(-1, 0);
+		display.display.setView(display.view_port);
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
 	{
-		window.viewPort.move(sf::Vector2f(1, 0));
-		window.window.setView(window.viewPort);
+		display.view_port.move(sf::Vector2f(1, 0));
+		display.display.setView(display.view_port);
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
 	{
-		window.viewPort.move(0, -1);
-		window.window.setView(window.viewPort);
+		display.view_port.move(0, -1);
+		display.display.setView(display.view_port);
 	}
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
 	{
-		window.viewPort.move(sf::Vector2f(0, 1));
-		window.window.setView(window.viewPort);
+		display.view_port.move(sf::Vector2f(0, 1));
+		display.display.setView(display.view_port);
 	}
 }
 
-void Player::getInput()
+void player::get_input()
 {
 	//Tile selector
 
-//Reseting mouse starting position
-	this->mousePosView = window.window.mapPixelToCoords(sf::Mouse::getPosition(window.window)); //Make sure we have in game coords
+//Resetting mouse starting position
+	this->mouse_pos_view = display.display.mapPixelToCoords(sf::Mouse::getPosition(display.display)); //Make sure we have in game coords
 
-	//Clamp so it snaps 16 pixels
-	if (this->mousePosView.x >= 0.f)
-		this->mousePosGrid.x = this->mousePosView.x / 64;
-	if (this->mousePosView.y >= 0.f)
-		this->mousePosGrid.y = this->mousePosView.y / 64;
+	//Clamp so it snaps 64 pixels
+	if (this->mouse_pos_view.x >= 0.f)
+		this->mouse_pos_grid.x = this->mouse_pos_view.x / 64;
+	if (this->mouse_pos_view.y >= 0.f)
+		this->mouse_pos_grid.y = this->mouse_pos_view.y / 64;
 
 	// Set the selectors position
-	this->selector.setPosition(this->mousePosGrid.x * 64, this->mousePosGrid.y * 64);
+
 }

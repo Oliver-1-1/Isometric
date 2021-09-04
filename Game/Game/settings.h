@@ -4,8 +4,8 @@ typedef unsigned short int USHORT;
 
 struct Settings
 {
-	USHORT resolutionX = 1920;
-	USHORT resolutionY = 1080;
+	USHORT resolution_x = 1920;
+	USHORT resolution_y = 1080;
 
 	
 

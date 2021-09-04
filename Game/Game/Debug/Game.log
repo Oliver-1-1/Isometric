@@ -1,5 +1,26 @@
-﻿  tileMap.cpp
-C:\Users\olive\source\repos\Game\Game\tileMap.cpp(19,74): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+﻿  main.cpp
+  tile_map.cpp
+C:\Users\olive\source\repos\Game\Game\tile_map.cpp(39,63): warning C4244: 'initializing': conversion from 'T' to 'int', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\olive\source\repos\Game\Game\tile_map.cpp(39,22): warning C4244: 'initializing': conversion from 'T' to 'const int', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\olive\source\repos\Game\Game\tile_map.cpp(101,54): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\olive\source\repos\Game\Game\tile_map.cpp(101,51): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\olive\source\repos\Game\Game\tile_map.cpp(110,58): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
           with
           [
               T=unsigned int
@@ -8,7 +29,7 @@ C:\Users\olive\source\repos\Game\Game\tileMap.cpp(19,74): warning C4244: 'argume
           [
               T=float
           ]
-C:\Users\olive\source\repos\Game\Game\tileMap.cpp(19,56): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+C:\Users\olive\source\repos\Game\Game\tile_map.cpp(110,49): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
           with
           [
               T=unsigned int
@@ -17,17 +38,61 @@ C:\Users\olive\source\repos\Game\Game\tileMap.cpp(19,56): warning C4244: 'argume
           [
               T=float
           ]
-C:\Users\olive\source\repos\Game\Game\tileMap.cpp(31,34): warning C4244: '=': conversion from 'int' to 'T', possible loss of data
+C:\Users\olive\source\repos\Game\Game\tile_map.cpp(111,64): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
           with
+          [
+              T=unsigned int
+          ]
+          and
           [
               T=float
           ]
-C:\Users\olive\source\repos\Game\Game\tileMap.cpp(32,34): warning C4244: '=': conversion from 'int' to 'T', possible loss of data
+C:\Users\olive\source\repos\Game\Game\tile_map.cpp(111,46): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
           with
+          [
+              T=unsigned int
+          ]
+          and
           [
               T=float
           ]
-C:\Users\olive\source\repos\Game\Game\tileMap.cpp(43,55): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+C:\Users\olive\source\repos\Game\Game\tile_map.cpp(112,70): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+          and
+          [
+              T=float
+          ]
+C:\Users\olive\source\repos\Game\Game\tile_map.cpp(112,46): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+          and
+          [
+              T=float
+          ]
+C:\Users\olive\source\repos\Game\Game\tile_map.cpp(113,64): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+          and
+          [
+              T=float
+          ]
+C:\Users\olive\source\repos\Game\Game\tile_map.cpp(113,40): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+          and
+          [
+              T=float
+          ]
+C:\Users\olive\source\repos\Game\Game\tile_map.cpp(128,69): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
           with
           [
               T=int
@@ -36,7 +101,7 @@ C:\Users\olive\source\repos\Game\Game\tileMap.cpp(43,55): warning C4244: 'argume
           [
               T=float
           ]
-C:\Users\olive\source\repos\Game\Game\tileMap.cpp(43,38): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+C:\Users\olive\source\repos\Game\Game\tile_map.cpp(128,57): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
           with
           [
               T=int
@@ -45,140 +110,77 @@ C:\Users\olive\source\repos\Game\Game\tileMap.cpp(43,38): warning C4244: 'argume
           [
               T=float
           ]
-C:\Users\olive\source\repos\Game\Game\tileMap.cpp(44,61): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+C:\Users\olive\source\repos\Game\Game\tile_map.cpp(140,56): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
           with
           [
-              T=int
+              T=unsigned int
           ]
           and
           [
               T=float
           ]
-C:\Users\olive\source\repos\Game\Game\tileMap.cpp(44,44): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+C:\Users\olive\source\repos\Game\Game\tile_map.cpp(140,38): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
           with
           [
-              T=int
+              T=unsigned int
           ]
           and
           [
               T=float
           ]
-C:\Users\olive\source\repos\Game\Game\tileMap.cpp(45,67): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+C:\Users\olive\source\repos\Game\Game\tile_map.cpp(141,62): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
           with
           [
-              T=int
+              T=unsigned int
           ]
           and
           [
               T=float
           ]
-C:\Users\olive\source\repos\Game\Game\tileMap.cpp(45,44): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+C:\Users\olive\source\repos\Game\Game\tile_map.cpp(141,44): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
           with
           [
-              T=int
+              T=unsigned int
           ]
           and
           [
               T=float
           ]
-C:\Users\olive\source\repos\Game\Game\tileMap.cpp(46,61): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+C:\Users\olive\source\repos\Game\Game\tile_map.cpp(142,68): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
           with
           [
-              T=int
+              T=unsigned int
           ]
           and
           [
               T=float
           ]
-C:\Users\olive\source\repos\Game\Game\tileMap.cpp(46,38): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+C:\Users\olive\source\repos\Game\Game\tile_map.cpp(142,44): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
           with
           [
-              T=int
+              T=unsigned int
           ]
           and
           [
               T=float
           ]
-C:\Users\olive\source\repos\Game\Game\tileMap.cpp(79,20): warning C4244: '=': conversion from 'int' to 'T', possible loss of data
+C:\Users\olive\source\repos\Game\Game\tile_map.cpp(143,62): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
           with
           [
-              T=float
-          ]
-C:\Users\olive\source\repos\Game\Game\tileMap.cpp(80,20): warning C4244: '=': conversion from 'int' to 'T', possible loss of data
-          with
-          [
-              T=float
-          ]
-C:\Users\olive\source\repos\Game\Game\tileMap.cpp(89,57): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
-          with
-          [
-              T=int
+              T=unsigned int
           ]
           and
           [
               T=float
           ]
-C:\Users\olive\source\repos\Game\Game\tileMap.cpp(89,40): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+C:\Users\olive\source\repos\Game\Game\tile_map.cpp(143,38): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
           with
           [
-              T=int
+              T=unsigned int
           ]
           and
           [
               T=float
           ]
-C:\Users\olive\source\repos\Game\Game\tileMap.cpp(90,63): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
-          with
-          [
-              T=int
-          ]
-          and
-          [
-              T=float
-          ]
-C:\Users\olive\source\repos\Game\Game\tileMap.cpp(90,46): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
-          with
-          [
-              T=int
-          ]
-          and
-          [
-              T=float
-          ]
-C:\Users\olive\source\repos\Game\Game\tileMap.cpp(91,69): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
-          with
-          [
-              T=int
-          ]
-          and
-          [
-              T=float
-          ]
-C:\Users\olive\source\repos\Game\Game\tileMap.cpp(91,46): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
-          with
-          [
-              T=int
-          ]
-          and
-          [
-              T=float
-          ]
-C:\Users\olive\source\repos\Game\Game\tileMap.cpp(92,63): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
-          with
-          [
-              T=int
-          ]
-          and
-          [
-              T=float
-          ]
-C:\Users\olive\source\repos\Game\Game\tileMap.cpp(92,40): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
-          with
-          [
-              T=int
-          ]
-          and
-          [
-              T=float
-          ]
+  Generating Code...
   Game.vcxproj -> C:\Users\olive\source\repos\Game\Debug\Game.exe

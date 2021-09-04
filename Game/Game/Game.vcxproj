@@ -158,13 +158,13 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="player.cpp" />
     <ClCompile Include="settings.cpp" />
-    <ClCompile Include="tileMap.cpp" />
+    <ClCompile Include="tile_map.cpp" />
     <ClCompile Include="window.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="player.h" />
     <ClInclude Include="settings.h" />
-    <ClInclude Include="tileMap.h" />
+    <ClInclude Include="tile_map.h" />
     <ClInclude Include="window.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

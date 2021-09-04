@@ -2,21 +2,21 @@
 
 #include "window.h"
 #include <SFML/Graphics.hpp>
-
-class Player
+#include <vector>
+#include "window.h"
+class player
 {
 public:
-	sf::RectangleShape selector; //The ui for selecting tiles
-	sf::Vector2f mousePosView;
-	sf::Vector2u mousePosGrid;
-
-	Player();
+	sf::Vector2f mouse_pos_view;
+	sf::Vector2u mouse_pos_grid;
+	std::vector<sf::Vertex> sel;
+	player();
 
 	void update(); //Update the moving functions.
-
+	sf::Vector2i get_selector_position(std::vector<sf::Vertex> vertices);
 private:
-	void moveCam(); // Moves the camera position. This is done by changing the viewport
+	void move_cam(); // Moves the camera position. This is done by changing the viewport
 
-	void getInput();
+	void get_input();
 
 };
