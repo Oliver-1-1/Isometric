@@ -1,152 +1,205 @@
 #include "tile_map.h"
 #include <algorithm>
+#include <ranges>
+#include <iostream>
+using namespace std::ranges;
+using namespace std::ranges::views;
 tile_map::tile_map()
 {
-	
-	map_size = calc_screen_tiles(settings.resolution_x, settings.resolution_y, 16);
-	map_size.x = 16; map_size.y = 16;
-	this->texture.loadFromFile("blocks_1.png");
-	this->texture1.loadFromFile("0.png");
-	this->tile_size = this->texture.getSize(); // pixels
+	map_size.x = 32; map_size.y = 32;
+	texture.loadFromFile("terrain_0.png");
 
-	this->tiles.resize(this->map_size.x * this->map_size.y * 5);	
+	this->tile_size = sf::Vector2u(64,64); // pixels
+
+	//this->tiles.resize(this->map_size.x * this->map_size.y * 5 + this->map_size.x * this->map_size.y * 5 + this->map_size.x * this->map_size.y * 5);
+	this->tiles2.resize((this->map_size.x * this->map_size.y)*5);
 }
 
-void tile_map::populate_tile_map()
+ std::vector<sf::Vertex> tile_map::get_tile(const sf::Vector2f grid_pos) const
+ {
+	 //Code to draw a tile from mouse pos
+	if (grid_pos.x <= map_size.x && grid_pos.x >= 0)
+		if (grid_pos.y <= map_size.y && grid_pos.y >= 0)
+		{
+			int const index = (grid_pos.x + grid_pos.y * map_size.x) * 4;
+			std::vector<sf::Vertex> q;
+
+		
+			display.states.texture = &this->texture;
+			display.display.draw(q.data(), q.size(), sf::Quads, display.states);
+			return q;
+		}
+	 return std::vector<sf::Vertex>();
+ }
+
+void tile_map::create_tiles(uint16_t z) 
 {
-	this->create_tiles();
+	tile_list.clear();
+	for (int x = map_size.x * z; x < map_size.x*(z+1); x++)
+	{
+		for (int y = map_size.y * z; y < map_size.y*(z+1); y++)
+		{
+		
+			const uint16_t index = (x + y * map_size.x) * 4;
+
+			tiles2[index].points.resize(4);
+			tiles2[index].texture = texture;
+			tiles2[index].type = texture_enum::grass_1;
+			if(x+y > 40)
+			{
+				tiles2[index].type = texture_enum::grass_2;
+
+			}
+			// Get a pointer to the mem loc where the tile should start
+			const auto quad = &tiles2[index].points[0];
+			sf::Vector2f pos;
+			
+			const auto coords_isometric = t2D_to_isometric(sf::Vector2f(x - (map_size.x + 1)*z, y - (map_size.y + 1)*z), sf::Vector2f(64, 64));
+			pos.x = (coords_isometric.x - coords_isometric.y) - 32;
+			pos.y = (coords_isometric.x + coords_isometric.y)/2;
+
+			auto points_coords = pos_coords(pos);
+
+			//Get points to the vertex, These point is isometric points converted from 2d perspective
+			for(const auto i : iota(0,4))
+			{
+				quad[i] = points_coords[i];
+			}
+
+			//Get what texture is applied accordning to what type it has // Enum
+			const int tx = static_cast<int>(tiles2[index].type) % 9;
+			const int ty = static_cast<int>(tiles2[index].type) / 9;
+	
+			auto texture_coordinates = tex_coords(sf::Vector2i(tx, ty));
+
+			//Assign the texture coordinates to the vertex
+			for(const auto i: iota(0,4))
+			{
+				quad[i].texCoords = texture_coordinates[i];
+			}
+
+		}
+	}
+
+	for (auto& [points, texture, type] : tiles2)
+	{
+		for (auto& x : points)
+		{
+			tile_list.push_back(x);
+		}
+	}
+	
+}
+
+
+//Add one tile to a certain position
+void tile_map::add_tile(const sf::Vector2i grid_pos, uint16_t z)
+{
+	int index = (grid_pos.x + grid_pos.y * map_size.x) * 4;
+		
+	sf::Vector2f pos;
+
+	//Needs to convert for the algoritm later.
+	const auto coords_isometric = t2D_to_isometric(sf::Vector2f(grid_pos.x, grid_pos.y), sf::Vector2f(64, 64));
+
+	pos.x = (coords_isometric.x - coords_isometric.y) - 32;
+	pos.y = (coords_isometric.x + coords_isometric.y) / 2;
+	const auto points_coords = pos_coords(pos);
+	for (const auto i : iota(0, 4))
+	{
+		tile_list[index + i].position = points_coords[i];
+	}
+
+	//Get what texture is applied accordning to what type it has // Enum
+	const int tx = static_cast<int>(texture_enum::grass_15) % 9;
+	const int ty = static_cast<int>(texture_enum::grass_15) / 9;
+
+	auto texture_coordinates = tex_coords(sf::Vector2i(tx, ty));
+
+	//Assign the texture coordinates to the vertex
+	for (const auto i : iota(0, 4))
+	{
+		tile_list[index + i].texCoords = texture_coordinates[i];
+	}
+	
+}
+
+//Remove a tile from the vector, grid_pos is the position of the tile
+void tile_map::remove_tile(const sf::Vector2i grid_pos)
+{
+	uint16_t const index = (grid_pos.x + grid_pos.y * map_size.x) * 4;
+	const auto t = &tile_list[index];
+	t[0].texCoords = sf::Vector2f(0,0);
+	t[1].texCoords = sf::Vector2f(64,0);
+	t[2].texCoords = sf::Vector2f(64,64);
+	t[3].texCoords = sf::Vector2f(0,64);
+	
+}
+
+sf::Vector2f tile_map::iso_to_2d(const sf::Vector2f coordinate) // Converts isometric coordinates to normal 2D coordinates
+{
+	sf::Vector2f pos;
+	pos.x = (2 * (coordinate.y) + (coordinate.x)) / 2;
+	pos.y = (2 * (coordinate.y) - (coordinate.x)) / 2;
+	return pos;
+}
+
+// Needs to be 2d coordinates not isometric
+sf::Vector2f tile_map::get_tile_coordinates(const sf::Vector2f coordinate) const 
+{
+	sf::Vector2f pos;
+	pos.x = floor(coordinate.x / 32);
+	pos.y = floor(coordinate.y / 32);
+	return pos;
+}
+
+sf::Vector2f tile_map::t2D_to_isometric(sf::Vector2f coordinates, const sf::Vector2f tile_size)
+{
+	return { coordinates.x * (tile_size.x / 2), coordinates.y * (tile_size.y / 2) };
+}
+
+std::vector<sf::Vector2f> tile_map::pos_coords(sf::Vector2f pos) const
+{
+	std::vector<sf::Vector2f> coordinates;
+	coordinates.resize(4);
+
+	coordinates[0] = sf::Vector2f(pos.x, pos.y);
+	coordinates[1] = sf::Vector2f(pos.x + tile_size.x, pos.y);
+	coordinates[2] = sf::Vector2f(pos.x + tile_size.x, pos.y + tile_size.y);
+	coordinates[3] = sf::Vector2f(pos.x, pos.y + tile_size.y);
+
+	return coordinates;
+}
+
+std::vector<sf::Vector2f> tile_map::tex_coords(sf::Vector2i pos) const
+{
+	std::vector<sf::Vector2f> coordinates;
+	coordinates.resize(4);
+
+	coordinates[0] = sf::Vector2f(64 * pos.x, 64 * pos.y);
+	coordinates[1] = sf::Vector2f(tile_size.x + 64 * pos.x, 64 * pos.y);
+	coordinates[2] = sf::Vector2f(tile_size.x + 64 * pos.x, tile_size.y + 64 * pos.y);
+	coordinates[3] = sf::Vector2f(64 * pos.x, tile_size.y + 64 * pos.y);
+
+	return coordinates;
+}
+
+sf::Vector2f tile_map::screen_to_map(const sf::Vector2f pos) const
+{
+	const float x = round((pos.x / 32 + pos.y / 32) / 2);
+	const float y = round((pos.y / 32 - (pos.x / 32)) / 2);
+	return { x, y };
+}
+
+void tile_map::populate_tile_map(uint16_t z)
+{
+	this->create_tiles(z);
 }
 
  void tile_map::draw_tile_map() const
 {
-	display.states.texture = &this->texture;
-	
-
-	display.display.draw(tiles.data(), tiles.size(), sf::Quads, display.states);
 	 
-}
-
- std::vector<sf::Vertex> tile_map::get_tile(sf::Vector2f grid_pos)
- {
-	 //Code to draw a tile from mouse pos
-	 if (sf::Keyboard::isKeyPressed(sf::Keyboard::X))
-	 {
-
-		 std::cout << grid_pos.x << " " << grid_pos.y << std::endl;
-		 if (grid_pos.x <= 16 && grid_pos.x >= 0)
-			 if (grid_pos.y <= 16 && grid_pos.y >= 0)
-			 {
-				 int const index = (grid_pos.x + grid_pos.y * map_size.x) * 4;
-				 std::vector<sf::Vertex> q;
-				 for (int i = index; i < index + 4; i++)
-					 q.push_back(tiles[i]);
-					 
-				 display.states.texture = &this->texture1;
-				 display.display.draw(q.data(), q.size(), sf::Quads, display.states);
-				 return q;
-			 }
-		 
-	 }
-	 return std::vector<sf::Vertex>();
-
- }
-
- sf::Vector2f tile_map::screen_to_map(const sf::Vector2f pos)
- {
+	display.states.texture = &texture;
+	display.display.draw(tile_list.data(), tile_list.size(), sf::Quads, display.states);
 	 
-	 const float x = round((pos.x / 32 + pos.y / 32) / 2);
-	 const float y = round((pos.y/32 - (pos.x/32))/2);
-	 return sf::Vector2f(x, y);
- }
-
- sf::Vector2f tile_map::t2D_to_isometric(sf::Vector2f coordinates, const sf::Vector2f tile_size)
- {
-	 return sf::Vector2f(coordinates.x * (tile_size.x / 2), coordinates.y * (tile_size.y / 2));
- }
-
- sf::Vector2f tile_map::get_tile_coordinates(sf::Vector2f coordinate)
- {
-	 sf::Vector2f pos;
-	 pos.x = floor(coordinate.x / 32);
-	 pos.y = floor(coordinate.y / 32);
-	 return pos;
- }
-
- sf::Vector2f tile_map::iso_to_2d(sf::Vector2f coordinate)
- {
-	sf::Vector2f pos;
-	pos.x = (2 * (coordinate.y) + (coordinate.x)) / 2;
-	pos.y = (2 * (coordinate.y) - (coordinate.x)) / 2;
-	 return pos;
- }
- 
-void tile_map::create_tiles() 
-{
-	for (int x = 0; x < map_size.x; x++)
-	{
-		for (int y = 0; y < map_size.y; y++)
-		{
-			const int tileNumber = 0; // put tile layout here
-
-			// find its position in the tileset texture
-			const int tu = tileNumber % (this->texture.getSize().x / 64);
-			const int tv = tileNumber / (this->texture.getSize().x / 64);
-
-			// Get a pointer to the mem loc where the tile should start
-			sf::Vertex* quad = &tiles[(x + y * map_size.x) * 4];
-
-			sf::Vector2f pos;
-
-			//                      2D
-			auto coords_2d = t2D_to_isometric(sf::Vector2f(x, y), sf::Vector2f(64, 64));
-			pos.x = (coords_2d.x - coords_2d.y) - 32;
-			pos.y = (coords_2d.x + coords_2d.y)/2;
-			quad[0].position = sf::Vector2f(pos.x, pos.y);
-			
-			quad[1].position = sf::Vector2f(pos.x + tile_size.x, pos.y);
-			quad[2].position = sf::Vector2f(pos.x + tile_size.x, pos.y + tile_size.y);
-			quad[3].position = sf::Vector2f(pos.x, pos.y + tile_size.y);
-			
-			quad[0].texCoords = sf::Vector2f(tile_size.x * tu, tv * tile_size.y);
-			quad[1].texCoords = sf::Vector2f((tu + 1) * tile_size.x, tv * tile_size.y);
-			quad[2].texCoords = sf::Vector2f((tu + 1) * tile_size.x, (tv + 1) * tile_size.y);
-			quad[3].texCoords = sf::Vector2f(tu * tile_size.x, (tv + 1) * tile_size.y);
-		}
-	}
-
-}
-
-sf::Vector2i tile_map::calc_screen_tiles(int resolution_x, int resolution_y, int tile_size)
-{
-	return {static_cast<int>(resolution_x) / tile_size, static_cast<int>(resolution_y) / tile_size};
-}
-
-void tile_map::add_tile(sf::Vector2i grid_pos)
-{
-	sf::Vertex* quad = &this->tiles[(grid_pos.x + grid_pos.y * map_size.x) * 4];
-	sf::Vector2f pos;
-	auto coords_2d = t2D_to_isometric(sf::Vector2f(grid_pos.x, grid_pos.y), sf::Vector2f(64, 64));
-	pos.x = (coords_2d.x - coords_2d.y);
-	pos.y = (coords_2d.x + coords_2d.y) / 2;
-	const int tu = 0 % (this->texture.getSize().x / 64);
-	const int tv = 0 / (this->texture.getSize().x / 64);
-
-
-	quad[0].position = sf::Vector2f(pos.x, pos.y);
-	quad[1].position = sf::Vector2f(pos.x + tile_size.x, pos.y);
-	quad[2].position = sf::Vector2f(pos.x + tile_size.x, pos.y + tile_size.y);
-	quad[3].position = sf::Vector2f(pos.x, pos.y + tile_size.y);
-
-	quad[0].texCoords = sf::Vector2f(tu * tile_size.x, tv * tile_size.y);
-	quad[1].texCoords = sf::Vector2f((tu + 1) * tile_size.x, tv * tile_size.y);
-	quad[2].texCoords = sf::Vector2f((tu + 1) * tile_size.x, (tv + 1) * tile_size.y);
-	quad[3].texCoords = sf::Vector2f(tu * tile_size.x, (tv + 1) * tile_size.y);
-}
-
-void tile_map::remove_tile(sf::Vector2i grid_pos)
-{
-
-	int const index = (grid_pos.x + grid_pos.y * map_size.x) * 4;
-	tiles.erase(tiles.begin() + index, tiles.begin() + index + 4);
-
 }

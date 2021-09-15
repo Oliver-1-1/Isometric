@@ -11,6 +11,7 @@ public:
 	window();
 	~window() = default;
 	void update_resolution(int x, int y);
+	sf::Vector2f get_mouse_position() const;
 private:
 
 };

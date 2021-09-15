@@ -12,31 +12,35 @@ window display;
 int main()
 {
    //TODO
-    //Not render all 200 x 200 sprites since a lot of them is out of view
-    //Move the camera with mouse
+
     tile_map tile_map;
+  
     player player;
-    tile_map.populate_tile_map();
+    tile_map.populate_tile_map(0);
+    //tile_map.remove_tile(sf::Vector2i(0, 0));
+
     while (display.display.isOpen())
     {
-
-        sf::Event event;
+        tile_map.remove_tile(sf::Vector2i(0, 0));
+        tile_map.add_tile(sf::Vector2i(0, 0), 0);
+        sf::Event event{};
         while (display.display.pollEvent(event))
         {
             if (event.type == sf::Event::Closed)
                 display.display.close();
         }
-        
         display.display.clear();
         tile_map.draw_tile_map();
+
         player.update();
+        //auto grid_pos = tile_map.get_tile_coordinates(tile_map::iso_to_2d(display.get_mouse_position()));
 
-        auto mousePos = display.display.mapPixelToCoords(sf::Mouse::getPosition(display.display));
-        auto grid_pos = tile_map.get_tile_coordinates(tile_map.iso_to_2d(mousePos));
-        tile_map.get_tile(grid_pos);
-
+       //tile_map.add_tile(sf::Vector2i(grid_pos.x, grid_pos.y), 2);
+        //tile_map.get_tile(grid_pos);
         display.display.display();
-        
+
+  
+
     }
 
     return 0;
