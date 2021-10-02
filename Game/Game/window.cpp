@@ -4,12 +4,14 @@
 
 window::window()
 {
-	this->display.create(sf::VideoMode(settings.resolution_x, settings.resolution_y), "display");
+	display.create(sf::VideoMode(settings.resolution_x, settings.resolution_y), "display");
 	
-	this->view_port.setSize(static_cast<float>(settings.resolution_x), static_cast<float>(settings.resolution_y));
-	this->view_port.setCenter(0,0);
+	view_port.setSize(static_cast<float>(settings.resolution_x), static_cast<float>(settings.resolution_y));
 	
-	this->display.setView(this->view_port);
+	view_port.setCenter(0,0);
+	display.setView(view_port);
+	display.setFramerateLimit(60);
+
 }
 //This can brake some functions that dosnt run in loop
 void window::update_resolution(int x, int y)
@@ -19,10 +21,10 @@ void window::update_resolution(int x, int y)
 	settings.resolution_x = x;
 	settings.resolution_y = y;
 	
-	this->view_port.setSize(static_cast<float>(settings.resolution_x), static_cast<float>(settings.resolution_y));
-	this->view_port.setCenter(static_cast<float>(settings.resolution_x) / 2.f, static_cast<float>(settings.resolution_y) / 2.f);
-	this->view_port.move(0, 0);
-	this->display.setView(this->view_port);
+	view_port.setSize(static_cast<float>(settings.resolution_x), static_cast<float>(settings.resolution_y));
+	view_port.setCenter(static_cast<float>(settings.resolution_x) / 2.f, static_cast<float>(settings.resolution_y) / 2.f);
+	view_port.move(0, 0);
+	display.setView(view_port);
 }
 
 sf::Vector2f window::get_mouse_position() const {return sf::Vector2f(display.mapPixelToCoords(sf::Mouse::getPosition(display)));}

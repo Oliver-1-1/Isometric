@@ -7,16 +7,11 @@
 class player
 {
 public:
-	sf::Vector2f mouse_pos_view;
-	sf::Vector2u mouse_pos_grid;
-	std::vector<sf::Vertex> sel;
 	player();
-
-	void update(); //Update the moving functions.
-	sf::Vector2i get_selector_position(std::vector<sf::Vertex> vertices);
-private:
+	~player() = default;
 	void move_cam(); // Moves the camera position. This is done by changing the viewport
 
-	void get_input();
+private:
+	uint16_t player_speed;
 
 };

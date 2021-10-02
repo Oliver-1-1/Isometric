@@ -1,23 +1,201 @@
 ﻿  main.cpp
-main.obj : error LNK2019: unresolved external symbol "__declspec(dllimport) public: __cdecl sf::String::String(char const *,class std::locale const &)" (__imp_??0String@sf@@QEAA@PEBDAEBVlocale@std@@@Z) referenced in function main
-main.obj : error LNK2019: unresolved external symbol "__declspec(dllimport) public: __cdecl sf::String::~String(void)" (__imp_??1String@sf@@QEAA@XZ) referenced in function main
-main.obj : error LNK2019: unresolved external symbol "__declspec(dllimport) public: __cdecl sf::VideoMode::VideoMode(unsigned int,unsigned int,unsigned int)" (__imp_??0VideoMode@sf@@QEAA@III@Z) referenced in function main
-main.obj : error LNK2019: unresolved external symbol "__declspec(dllimport) public: void __cdecl sf::Window::close(void)" (__imp_?close@Window@sf@@QEAAXXZ) referenced in function main
-main.obj : error LNK2019: unresolved external symbol "__declspec(dllimport) public: bool __cdecl sf::Window::isOpen(void)const " (__imp_?isOpen@Window@sf@@QEBA_NXZ) referenced in function main
-main.obj : error LNK2019: unresolved external symbol "__declspec(dllimport) public: bool __cdecl sf::Window::pollEvent(class sf::Event &)" (__imp_?pollEvent@Window@sf@@QEAA_NAEAVEvent@2@@Z) referenced in function main
-main.obj : error LNK2019: unresolved external symbol "__declspec(dllimport) public: void __cdecl sf::Window::display(void)" (__imp_?display@Window@sf@@QEAAXXZ) referenced in function main
-main.obj : error LNK2019: unresolved external symbol "__declspec(dllimport) public: __cdecl sf::Color::Color(unsigned char,unsigned char,unsigned char,unsigned char)" (__imp_??0Color@sf@@QEAA@EEEE@Z) referenced in function main
-main.obj : error LNK2019: unresolved external symbol "__declspec(dllimport) public: void __cdecl sf::Shape::setFillColor(class sf::Color const &)" (__imp_?setFillColor@Shape@sf@@QEAAXAEBVColor@2@@Z) referenced in function main
-main.obj : error LNK2019: unresolved external symbol "__declspec(dllimport) public: __cdecl sf::CircleShape::CircleShape(float,unsigned __int64)" (__imp_??0CircleShape@sf@@QEAA@M_K@Z) referenced in function main
-main.obj : error LNK2019: unresolved external symbol "__declspec(dllimport) public: virtual __cdecl sf::CircleShape::~CircleShape(void)" (__imp_??1CircleShape@sf@@UEAA@XZ) referenced in function main
-main.obj : error LNK2019: unresolved external symbol "__declspec(dllimport) public: void __cdecl sf::RenderTarget::clear(class sf::Color const &)" (__imp_?clear@RenderTarget@sf@@QEAAXAEBVColor@2@@Z) referenced in function main
-main.obj : error LNK2019: unresolved external symbol "__declspec(dllimport) public: void __cdecl sf::RenderTarget::draw(class sf::Drawable const &,class sf::RenderStates const &)" (__imp_?draw@RenderTarget@sf@@QEAAXAEBVDrawable@2@AEBVRenderStates@2@@Z) referenced in function main
-main.obj : error LNK2019: unresolved external symbol "__declspec(dllimport) public: __cdecl sf::RenderWindow::RenderWindow(class sf::VideoMode,class sf::String const &,unsigned int,struct sf::ContextSettings const &)" (__imp_??0RenderWindow@sf@@QEAA@VVideoMode@1@AEBVString@1@IAEBUContextSettings@1@@Z) referenced in function main
-main.obj : error LNK2019: unresolved external symbol "__declspec(dllimport) public: virtual __cdecl sf::RenderWindow::~RenderWindow(void)" (__imp_??1RenderWindow@sf@@UEAA@XZ) referenced in function main
-main.obj : error LNK2019: unresolved external symbol "__declspec(dllimport) public: static class sf::RenderStates const sf::RenderStates::Default" (__imp_?Default@RenderStates@sf@@2V12@B) referenced in function main
-main.obj : error LNK2019: unresolved external symbol "__declspec(dllimport) public: static class sf::Color const sf::Color::Green" (__imp_?Green@Color@sf@@2V12@B) referenced in function main
-C:\Users\olive\OneDrive\Skrivbord\SFML-2.5.1\lib\sfml-window-s.lib : warning LNK4272: library machine type 'x86' conflicts with target machine type 'x64'
-C:\Users\olive\OneDrive\Skrivbord\SFML-2.5.1\lib\sfml-system-s.lib : warning LNK4272: library machine type 'x86' conflicts with target machine type 'x64'
-C:\Users\olive\OneDrive\Skrivbord\SFML-2.5.1\lib\freetype.lib : warning LNK4272: library machine type 'x86' conflicts with target machine type 'x64'
-C:\Users\olive\OneDrive\Skrivbord\SFML-2.5.1\lib\openal32.lib : warning LNK4272: library machine type 'x86' conflicts with target machine type 'x64'
-C:\Users\olive\source\repos\Game\x64\Debug\Game.exe : fatal error LNK1120: 17 unresolved externals
+  player.cpp
+C:\Users\olive\OneDrive\Game\Game\player.cpp(13,26): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\olive\OneDrive\Game\Game\player.cpp(24,29): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+  settings.cpp
+  chunk.cpp
+C:\Users\olive\OneDrive\Game\Game\chunk.cpp(18,42): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+          with
+          [
+              T=int
+          ]
+          and
+          [
+              T=float
+          ]
+C:\Users\olive\OneDrive\Game\Game\chunk.cpp(18,35): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+          with
+          [
+              T=int
+          ]
+          and
+          [
+              T=float
+          ]
+C:\Users\olive\OneDrive\Game\Game\chunk.cpp(38,103): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+          with
+          [
+              T=int
+          ]
+          and
+          [
+              T=float
+          ]
+C:\Users\olive\OneDrive\Game\Game\chunk.cpp(38,69): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+          with
+          [
+              T=int
+          ]
+          and
+          [
+              T=float
+          ]
+C:\Users\olive\OneDrive\Game\Game\chunk.cpp(73,115): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+          with
+          [
+              T=int
+          ]
+          and
+          [
+              T=float
+          ]
+C:\Users\olive\OneDrive\Game\Game\chunk.cpp(73,76): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+          with
+          [
+              T=int
+          ]
+          and
+          [
+              T=float
+          ]
+C:\Users\olive\OneDrive\Game\Game\chunk.cpp(147,47): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+          with
+          [
+              T=int
+          ]
+          and
+          [
+              T=float
+          ]
+C:\Users\olive\OneDrive\Game\Game\chunk.cpp(147,35): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+          with
+          [
+              T=int
+          ]
+          and
+          [
+              T=float
+          ]
+C:\Users\olive\OneDrive\Game\Game\chunk.cpp(148,61): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+          with
+          [
+              T=int
+          ]
+          and
+          [
+              T=float
+          ]
+C:\Users\olive\OneDrive\Game\Game\chunk.cpp(148,44): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+          and
+          [
+              T=float
+          ]
+C:\Users\olive\OneDrive\Game\Game\chunk.cpp(149,70): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+          and
+          [
+              T=float
+          ]
+C:\Users\olive\OneDrive\Game\Game\chunk.cpp(149,44): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+          and
+          [
+              T=float
+          ]
+C:\Users\olive\OneDrive\Game\Game\chunk.cpp(150,56): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+          with
+          [
+              T=unsigned int
+          ]
+          and
+          [
+              T=float
+          ]
+C:\Users\olive\OneDrive\Game\Game\chunk.cpp(150,35): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+          with
+          [
+              T=int
+          ]
+          and
+          [
+              T=float
+          ]
+C:\Users\olive\OneDrive\Game\Game\chunk.cpp(159,28): warning C4244: 'argument': conversion from 'float' to 'T', possible loss of data
+          with
+          [
+              T=int
+          ]
+C:\Users\olive\OneDrive\Game\Game\chunk.cpp(159,22): warning C4244: 'argument': conversion from 'const float' to 'T', possible loss of data
+          with
+          [
+              T=int
+          ]
+C:\Users\olive\OneDrive\Game\Game\chunk.cpp(180,71): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+          with
+          [
+              T=int
+          ]
+          and
+          [
+              T=float
+          ]
+C:\Users\olive\OneDrive\Game\Game\chunk.cpp(180,51): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+          with
+          [
+              T=int
+          ]
+          and
+          [
+              T=float
+          ]
+C:\Users\olive\OneDrive\Game\Game\chunk.cpp(186,72): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+          with
+          [
+              T=int
+          ]
+          and
+          [
+              T=float
+          ]
+C:\Users\olive\OneDrive\Game\Game\chunk.cpp(186,52): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+          with
+          [
+              T=int
+          ]
+          and
+          [
+              T=float
+          ]
+C:\Users\olive\OneDrive\Game\Game\chunk.cpp(191,48): warning C4244: 'argument': conversion from 'T' to 'T', possible loss of data
+          with
+          [
+              T=int
+          ]
+          and
+          [
+              T=float
+          ]
+C:\Users\olive\OneDrive\Game\Game\chunk.cpp(214,62): warning C4244: 'initializing': conversion from 'T' to 'int', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\olive\OneDrive\Game\Game\chunk.cpp(214,21): warning C4244: 'initializing': conversion from 'T' to 'const int', possible loss of data
+          with
+          [
+              T=float
+          ]
+  window.cpp
+  world.cpp
+  Generating Code...
+  Game.vcxproj -> C:\Users\olive\OneDrive\Game\x64\Debug\Game.exe
